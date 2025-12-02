@@ -1,4 +1,5 @@
-# OutfitVision Dockerfile for Google Cloud Run
+# Fashion.AI Dockerfile for Google Cloud Run
+# Multi-stage build for optimized production image
 FROM node:18-alpine
 
 WORKDIR /app
