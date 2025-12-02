@@ -1,6 +1,6 @@
 {
   "name": "outfit-vision",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "OutfitVision - AI-powered outfit analysis using Google Vision and Gemini APIs",
   "main": "server/index.js",
   "scripts": {
