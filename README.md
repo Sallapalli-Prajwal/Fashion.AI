@@ -77,3 +77,10 @@ outfit-vision/
 
 Deploy to Google Cloud Run following Google Cloud documentation.
 
+## Recent Updates
+
+- Added Google Analytics integration
+- Implemented Firestore session store
+- Enhanced API logging and analytics
+- Fixed OAuth session persistence issues
+
