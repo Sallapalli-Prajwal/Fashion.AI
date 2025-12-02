@@ -1,0 +1,182 @@
+.gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gallery-header h1 {
+  font-size: 2.5rem;
+}
+
+.gallery-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.upload-btn,
+.analyze-btn,
+.refresh-btn,
+.google-picker-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-picker-btn {
+  background: #4285F4;
+  color: white;
+}
+
+.google-picker-btn:hover:not(:disabled) {
+  background: #357ae8;
+}
+
+.google-picker-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-btn {
+  background: #4285F4;
+  color: white;
+}
+
+.upload-btn:hover {
+  background: #357ae8;
+}
+
+.analyze-btn {
+  background: #34a853;
+  color: white;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  background: #2d8f47;
+}
+
+.refresh-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+.refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.photo-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.photo-card.selected {
+  border: 3px solid #4285F4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
+}
+
+.photo-card.analyzed {
+  border-left: 4px solid #34a853;
+}
+
+.photo-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #f0f0f0;
+  position: relative;
+}
+
+.photo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.analyzed-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #34a853;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.selected-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #4285F4;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.photo-info {
+  padding: 1rem;
+}
+
+.photo-filename {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-details-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.view-details-btn:hover {
+  background: #5568d3;
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+

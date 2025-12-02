@@ -1,0 +1,181 @@
+.profile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+}
+
+.profile-header {
+  margin-bottom: 3rem;
+}
+
+.profile-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.user-info h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.user-info p {
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.profile-content {
+  margin-top: 2rem;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  color: #667eea;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.outfits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.outfit-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.outfit-image {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #e0e0e0;
+}
+
+.outfit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.outfit-details {
+  flex: 1;
+}
+
+.outfit-details h3 {
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.outfit-summary {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.outfit-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.meta-item {
+  color: #555;
+}
+
+.outfit-colors {
+  margin-bottom: 1rem;
+}
+
+.color-chip {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.outfit-suggestions {
+  margin-top: 1rem;
+}
+
+.outfit-suggestions ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.outfit-suggestions li {
+  padding: 0.25rem 0;
+  color: #555;
+}
+
+.outfit-suggestions li::before {
+  content: "💡 ";
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  height: fit-content;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+

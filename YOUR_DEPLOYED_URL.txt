@@ -1,0 +1,10 @@
+🎉 YOUR APP IS LIVE! 🎉
+
+Service URL: https://outfit-vision-4018057728.us-central1.run.app
+
+Next Steps:
+1. Update OAuth redirect URI to: https://outfit-vision-4018057728.us-central1.run.app/api/auth/google/callback
+2. Run: .\update-env-vars.ps1 to set environment variables
+3. Test your app at the URL above!
+
+

@@ -1,0 +1,28 @@
+# Google App Engine ignore file
+# Similar to .gitignore but for App Engine deployment
+
+node_modules/
+client/node_modules/
+.env
+.env.local
+.env.production
+.DS_Store
+.git/
+.vscode/
+.idea/
+*.log
+logs/
+uploads/
+service-account-key.json
+*-key.json
+*.pem
+*.key
+README.md
+DEPLOYMENT.md
+DEPLOY_APP_ENGINE.md
+*.md
+!README.md
+cloudbuild.yaml
+Dockerfile
+.dockerignore
+

@@ -1,0 +1,38 @@
+# Cloud Build configuration for Google Cloud Run
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--build-arg'
+      - 'VITE_GA_MEASUREMENT_ID=${_VITE_GA_MEASUREMENT_ID}'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/outfit-vision'
+      - '.'
+  
+  # Push the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/outfit-vision']
+  
+  # Deploy to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'outfit-vision'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/outfit-vision'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
+images:
+  - 'gcr.io/$PROJECT_ID/outfit-vision'
+
+# Substitution variables (set via gcloud builds submit --substitutions)
+# Example: gcloud builds submit --substitutions=_VITE_GA_MEASUREMENT_ID=G-86RZ54VMRY
+substitutions:
+  _VITE_GA_MEASUREMENT_ID: 'G-86RZ54VMRY'
+
