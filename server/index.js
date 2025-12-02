@@ -1,6 +1,8 @@
 /**
- * OutfitVision - Express Server
+ * Fashion.AI - Express Server
  * Main entry point for the backend API server
+ * 
+ * Handles API requests, authentication, and serves the React frontend
  */
 
 const express = require('express');
