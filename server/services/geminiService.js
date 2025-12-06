@@ -230,12 +230,12 @@ Be concise, practical, and fashion-forward in your analysis.`;
     }, {
       styleCategory: geminiData.styleCategory,
       occasion: geminiData.occasion
-    }, duration);
+    }, duration, null, global.currentReq || null);
 
     return geminiData;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Google Gemini API', { visionData: 'present' }, null, duration, error);
+    logAPICall('Google Gemini API', { visionData: 'present' }, null, duration, error, global.currentReq || null);
     throw error; // Re-throw to allow fallback logic
   }
 };
@@ -395,12 +395,12 @@ Provide recommendations in JSON format:
       outfitsCount: userOutfits.length
     }, {
       recommendedStylesCount: recommendations.recommendedStyles?.length || 0
-    }, duration);
+    }, duration, null, global.currentReq || null);
 
     return recommendations;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Google Gemini API (Recommendations)', {}, null, duration, error);
+    logAPICall('Google Gemini API (Recommendations)', {}, null, duration, error, global.currentReq || null);
     throw error; // Re-throw to allow fallback logic
   }
 };

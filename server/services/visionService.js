@@ -98,7 +98,7 @@ const analyzeImage = async (imageUri, isBase64 = false) => {
     return response;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Google Vision API', { imageUri }, null, duration, error);
+    logAPICall('Google Vision API', { imageUri }, null, duration, error, global.currentReq || null);
     throw new Error(`Vision API error: ${error.message}`);
   }
 };
@@ -187,12 +187,12 @@ const analyzeImageWithAPIKey = async (imageUri, isBase64 = false) => {
       labelsCount: labels.length,
       colorsCount: colors.length,
       objectsCount: objects.length
-    }, duration);
+    }, duration, null, global.currentReq || null);
 
     return visionData;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Google Vision API (REST)', { imageUri }, null, duration, error);
+    logAPICall('Google Vision API (REST)', { imageUri }, null, duration, error, global.currentReq || null);
     throw new Error(`Vision API error: ${error.message}`);
   }
 };

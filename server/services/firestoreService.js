@@ -132,12 +132,12 @@ const photoExists = async (userId, photoURL) => {
     logAPICall('Firestore (Check Photo)', {
       userId,
       photoURL: photoURL.substring(0, 50) + '...'
-    }, { exists }, duration);
+    }, { exists }, duration, null, global.currentReq || null);
     
     return exists;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Check Photo)', { userId, photoURL }, null, duration, error);
+    logAPICall('Firestore (Check Photo)', { userId, photoURL }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore error: ${error.message}`);
   }
 };
@@ -202,7 +202,7 @@ const storeOutfit = async (userId, outfitData) => {
       docId,
       photoURL: outfitData.photoURL.substring(0, 50) + '...',
       styleCategory: outfitData.styleCategory
-    }, { success: true, verified: true }, duration);
+    }, { success: true, verified: true }, duration, null, global.currentReq || null);
     
     console.log('✅ Verified outfit stored in Firestore:', {
       userId,
@@ -214,7 +214,7 @@ const storeOutfit = async (userId, outfitData) => {
     return docId;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Store Outfit)', { userId }, null, duration, error);
+    logAPICall('Firestore (Store Outfit)', { userId }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore store error: ${error.message}`);
   }
 };
@@ -282,12 +282,12 @@ const getUserOutfits = async (userId, limit = 100) => {
     logAPICall('Firestore (Get User Outfits)', {
       userId,
       limit
-    }, { count: outfits.length }, duration);
+    }, { count: outfits.length }, duration, null, global.currentReq || null);
     
     return outfits;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Get User Outfits)', { userId }, null, duration, error);
+    logAPICall('Firestore (Get User Outfits)', { userId }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore get error: ${error.message}`);
   }
 };
@@ -314,12 +314,12 @@ const deleteOutfit = async (userId, outfitId) => {
     logAPICall('Firestore (Delete Outfit)', {
       userId,
       outfitId
-    }, { success: true }, duration);
+    }, { success: true }, duration, null, global.currentReq || null);
     
     return true;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Delete Outfit)', { userId, outfitId }, null, duration, error);
+    logAPICall('Firestore (Delete Outfit)', { userId, outfitId }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore delete error: ${error.message}`);
   }
 };
@@ -382,12 +382,12 @@ const getUserStats = async (userId) => {
     
     logAPICall('Firestore (Get Stats)', {
       userId
-    }, { totalOutfits: outfits.length }, duration);
+    }, { totalOutfits: outfits.length }, duration, null, global.currentReq || null);
     
     return stats;
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Get Stats)', { userId }, null, duration, error);
+    logAPICall('Firestore (Get Stats)', { userId }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore stats error: ${error.message}`);
   }
 };
@@ -416,10 +416,10 @@ const updateUserProfile = async (userId, profileData) => {
     
     logAPICall('Firestore (Update Profile)', {
       userId
-    }, { success: true }, duration);
+    }, { success: true }, duration, null, global.currentReq || null);
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('Firestore (Update Profile)', { userId }, null, duration, error);
+    logAPICall('Firestore (Update Profile)', { userId }, null, duration, error, global.currentReq || null);
     throw new Error(`Firestore profile update error: ${error.message}`);
   }
 };

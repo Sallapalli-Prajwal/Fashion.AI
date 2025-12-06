@@ -57,8 +57,9 @@ const logRequest = (req, res, next) => {
 
 /**
  * Log API call (Vision, Gemini, Firestore, etc.)
+ * Also sends event to Google Analytics
  */
-const logAPICall = (apiName, requestData, responseData, duration, error = null) => {
+const logAPICall = (apiName, requestData, responseData, duration, error = null, req = null) => {
   const logEntry = {
     timestamp: new Date().toISOString(),
     api: apiName,
@@ -72,6 +73,20 @@ const logAPICall = (apiName, requestData, responseData, duration, error = null) 
   // Write to analytics log
   const logFile = path.join(logsDir, `analytics-${new Date().toISOString().split('T')[0]}.log`);
   fs.appendFileSync(logFile, JSON.stringify(logEntry) + '\n');
+
+  // Send to Google Analytics (non-blocking)
+  try {
+    const gaService = require('../services/gaService');
+    gaService.trackAPICall(apiName, requestData, responseData, duration, error, req)
+      .catch(err => {
+        // Silently fail - GA tracking should never break the app
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('⚠️  GA tracking error:', err.message);
+        }
+      });
+  } catch (gaError) {
+    // Silently fail if GA service not available
+  }
 
   // Console log for development
   if (process.env.NODE_ENV === 'development') {

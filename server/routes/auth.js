@@ -57,7 +57,7 @@ router.get('/google', asyncHandler(async (req, res) => {
     `state=${state}`;
   
   const duration = Date.now() - startTime;
-  logAPICall('OAuth (Initiate)', { provider: 'Google' }, { authUrl: '[REDACTED]' }, duration);
+  logAPICall('OAuth', { provider: 'Google', action: 'initiate' }, { authUrl: '[REDACTED]' }, duration, null, req);
   
   // Log redirect URI for debugging (always log in production to help debug)
   console.log('🔗 OAuth Redirect URI:', normalizedRedirectUri);
@@ -181,7 +181,7 @@ router.get('/google/callback', asyncHandler(async (req, res) => {
         }
         
         const duration = Date.now() - startTime;
-        logAPICall('OAuth (Callback)', { provider: 'Google' }, { 
+        logAPICall('OAuth', { provider: 'Google', action: 'callback' }, { 
           userId: userInfo.id,
           hasToken: !!access_token 
         }, duration);
@@ -213,7 +213,7 @@ router.get('/google/callback', asyncHandler(async (req, res) => {
       });
   } catch (error) {
     const duration = Date.now() - startTime;
-    logAPICall('OAuth (Callback)', { provider: 'Google' }, null, duration, error);
+    logAPICall('OAuth', { provider: 'Google', action: 'callback' }, null, duration, error, req);
     res.redirect(`${process.env.CLIENT_URL || 'http://localhost:5173'}/auth?error=token_exchange_failed`);
   }
 }));

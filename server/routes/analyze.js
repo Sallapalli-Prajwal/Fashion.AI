@@ -17,6 +17,8 @@ const firestoreService = require('../services/firestoreService');
  * Analyze a single photo or multiple photos
  */
 router.post('/', asyncHandler(async (req, res) => {
+  // Store req in global for API tracking (temporary, will be passed properly)
+  global.currentReq = req;
   const startTime = Date.now();
   
   if (!req.session.userId) {
@@ -160,6 +162,9 @@ router.post('/', asyncHandler(async (req, res) => {
     
     const duration = Date.now() - startTime;
     
+    // Clear global req reference
+    global.currentReq = null;
+    
     res.json({
       success: true,
       outfit: {
@@ -169,6 +174,7 @@ router.post('/', asyncHandler(async (req, res) => {
       processingTime: `${duration}ms`
     });
   } catch (error) {
+    global.currentReq = null;
     throw error;
   }
 }));
@@ -178,7 +184,10 @@ router.post('/', asyncHandler(async (req, res) => {
  * Analyze multiple photos
  */
 router.post('/batch', asyncHandler(async (req, res) => {
+  // Store req in global for API tracking
+  global.currentReq = req;
   if (!req.session.userId) {
+    global.currentReq = null;
     return res.status(401).json({ error: 'Not authenticated' });
   }
   
@@ -301,6 +310,9 @@ router.post('/batch', asyncHandler(async (req, res) => {
       outfitId: r.outfitId
     }))
   });
+  
+  // Clear global req reference
+  global.currentReq = null;
   
   res.json({
     success: true,
